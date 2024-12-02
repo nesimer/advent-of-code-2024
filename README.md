@@ -2,7 +2,7 @@
 
 All my implementations of [Avent of Code challenges 2024](https://adventofcode.com/2024):
 
-- [1/12](1/main.ts) - compute distance and similarity between two number lists
+- [1/12](1/main.ts) - ⭐⭐ - compute distance and similarity between two number lists
 
 ## Commands
 

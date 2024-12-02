@@ -63,4 +63,5 @@ export default async function main() {
   const similarity = computeSimilarity(firstList, secondList);
   console.log(`distance: ${distance}`);
   console.log(`similarity: ${similarity}`);
+  console.log("⭐⭐");
 }
