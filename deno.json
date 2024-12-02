@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "lib": ["deno.ns", "dom"],
+        "strict": true
+    },
+    "tasks": {
+        "aoc": "deno run --allow-read ./run.ts"
+    },
+    "fmt": {
+        "options": {
+            "useTabs": false,
+            "lineWidth": 80,
+            "indentWidth": 2,
+            "singleQuote": true,
+            "proseWrap": "preserve"
+        }
+    }
+}
