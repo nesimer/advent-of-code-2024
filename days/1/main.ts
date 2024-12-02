@@ -6,7 +6,7 @@
  */
 async function loadListsFile() {
   try {
-    const data = await Deno.readTextFile("./1/input.txt");
+    const data = await Deno.readTextFile("./days/1/input.txt");
     const lines = data.split("\n").map((line) => line.trim());
     return lines.reduce(
       (acc, line) => {

@@ -1,8 +1,8 @@
 const wantedChallenge = Deno.args[0];
-const path = `./${wantedChallenge}/main.ts`;
+const path = `./days/${wantedChallenge}/main.ts`;
 
 try {
-  console.log(`Results for challenge ${wantedChallenge}:`);
+  console.log(`Results for day ${wantedChallenge}:`);
   await Deno.lstat(path);
   const challenge = (await import(path)).default;
   challenge && (await challenge());
@@ -10,5 +10,5 @@ try {
   if (!(err instanceof Deno.errors.NotFound)) {
     throw err;
   }
-  console.log(`Challenge ${wantedChallenge} not implemented yet.`);
+  console.log(`Day ${wantedChallenge} challenge not implemented yet.`);
 }
