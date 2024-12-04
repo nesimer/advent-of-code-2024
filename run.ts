@@ -1,8 +1,17 @@
-const wantedChallenge = Deno.args[0];
-const path = `./days/${wantedChallenge}/main.ts`;
+import { parseArgs } from "jsr:@std/cli/parse-args";
+
+const flags = parseArgs(Deno.args, {
+  boolean: ["example"],
+  string: ["day"],
+  alias: { example: "e", day: "d" },
+  default: { example: false },
+});
+
+const path = `./days/${flags.day}/main.ts`;
 
 try {
-  console.log(`Results for day ${wantedChallenge}:`);
+  Deno.env.set("WITH_EXAMPLE", String(flags.example));
+  console.log(`Results for day ${flags.day}:`);
   await Deno.lstat(path);
   const challenge = (await import(path)).default;
   challenge && (await challenge());
@@ -10,5 +19,5 @@ try {
   if (!(err instanceof Deno.errors.NotFound)) {
     throw err;
   }
-  console.log(`Day ${wantedChallenge} challenge not implemented yet.`);
+  console.log(`Day ${flags.day} challenge not implemented yet.`);
 }

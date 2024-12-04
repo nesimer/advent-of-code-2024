@@ -11,5 +11,13 @@ All my implementations of [Avent of Code days 2024](https://adventofcode.com/202
 To run it:
 
 ```sh
-deno task aoc ${day}
+deno task aoc -d ${day}
+```
+
+To run with example:
+
+```sh
+deno task aoc -d ${day} -e
+// OR
+deno task aoc -d ${day} --example
 ```
