@@ -1,21 +1,17 @@
+import { loadFile } from "../tools.ts";
+
 /**
  * Reads a file containing two lists of numbers separated by spaces,
  * parses the file, and returns the two lists as arrays of numbers.
  *
  * @returns {Promise<number[][]>} A promise that resolves to a tuple containing two arrays of numbers.
  */
-async function loadListsFile() {
-  try {
-    const data = await Deno.readTextFile("./days/2/input.txt");
-    const lines = data.split("\n").map((line) => line.trim());
-    return lines.reduce((acc, line) => {
-      const reportsData = line.split(/\s+/).map((x) => +x);
-      return [...acc, reportsData];
-    }, [] as number[][]);
-  } catch (e) {
-    console.error("Error reading the file:", e);
-    throw e;
-  }
+function parse(data: string) {
+  const lines = data.split("\n").map((line) => line.trim());
+  return lines.reduce((acc, line) => {
+    const reportsData = line.split(/\s+/).map((x) => +x);
+    return [...acc, reportsData];
+  }, [] as number[][]);
 }
 
 /**
@@ -78,7 +74,8 @@ function countDampenedSafeReports(reports: number[][]): number {
 }
 
 export default async function main() {
-  const reports = await loadListsFile();
+  const data = await loadFile(2);
+  const reports = await parse(data);
   console.log(`Total safe reports: ${countSafeReports(reports)}`);
   console.log(
     `Total dampened safe reports: ${countDampenedSafeReports(reports)}`

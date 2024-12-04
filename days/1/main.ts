@@ -1,26 +1,24 @@
+import { loadFile } from "../tools.ts";
+
 /**
- * Reads a file containing two lists of numbers separated by spaces,
- * parses the file, and returns the two lists as arrays of numbers.
+ * Parses the input data to extract two lists of numbers.
+ * Each line in the input data contains two numbers separated by whitespace.
+ * The function splits each line and adds the numbers to two separate arrays.
  *
- * @returns {Promise<[number[], number[]]>} A promise that resolves to a tuple containing two arrays of numbers.
+ * @param {string} data - The input data containing lines of two numbers separated by whitespace.
+ * @returns {[number[], number[]]} A tuple containing two arrays of numbers.
  */
-async function loadListsFile() {
-  try {
-    const data = await Deno.readTextFile("./days/1/input.txt");
-    const lines = data.split("\n").map((line) => line.trim());
-    return lines.reduce(
-      (acc, line) => {
-        const [first, second] = line.split(/\s+/);
-        acc[0].push(+first);
-        acc[1].push(+second);
-        return acc;
-      },
-      [[], []] as [number[], number[]]
-    );
-  } catch (e) {
-    console.error("Error reading the file:", e);
-    throw e;
-  }
+function parse(data: string) {
+  const lines = data.split("\n").map((line) => line.trim());
+  return lines.reduce(
+    (acc, line) => {
+      const [first, second] = line.split(/\s+/);
+      acc[0].push(+first);
+      acc[1].push(+second);
+      return acc;
+    },
+    [[], []] as [number[], number[]]
+  );
 }
 
 /**
@@ -58,7 +56,8 @@ function computeSimilarity(firstList: number[], secondList: number[]): number {
 }
 
 export default async function main() {
-  const [firstList, secondList] = await loadListsFile();
+  const data = await loadFile(1);
+  const [firstList, secondList] = await parse(data);
   const distance = computeDistance(firstList, secondList);
   const similarity = computeSimilarity(firstList, secondList);
   console.log(`distance: ${distance}`);

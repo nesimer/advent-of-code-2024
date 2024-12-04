@@ -1,17 +1,4 @@
-/**
- * Reads a file containing two lists of numbers separated by spaces,
- * parses the file, and returns the two lists as arrays of numbers.
- *
- * @returns {Promise<string>} A promise that resolves to a tuple containing two arrays of numbers.
- */
-function loadListsFile() {
-  try {
-    return Deno.readTextFile("./days/3/input.txt");
-  } catch (e) {
-    console.error("Error reading the file:", e);
-    throw e;
-  }
-}
+import { loadFile } from "../tools.ts";
 
 /**
  * A tuple representing a captured multiplication operation.
@@ -62,7 +49,7 @@ function computeWantedSumMul(data: string): number {
 }
 
 export default async function main() {
-  const corruptedData = await loadListsFile();
+  const corruptedData = await loadFile(3);
   console.log(
     `The sum of all the multiplications is: ${computeSumMul(corruptedData)}`
   );
