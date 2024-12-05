@@ -7,7 +7,7 @@ const flags = parseArgs(Deno.args, {
   default: { example: false },
 });
 
-const path = `./days/${flags.day}/main.ts`;
+const path = `./days/${flags.day}/mod.ts`;
 
 try {
   Deno.env.set("WITH_EXAMPLE", String(flags.example));
