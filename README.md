@@ -9,6 +9,7 @@ All my implementations of [Avent of Code days 2024](https://adventofcode.com/202
 - [5/12](days/5/mod.ts) - ⭐⭐ - extract rules and orders from input and sums the middle elements of valid orders and fixed orders
 - [6/12](days/6/mod.ts)  - ⭐⭐ - count visited cells of patrol guard in a grid and count total endless loop schema if add new obstruction on guard patrol
 - [7/12](days/7/mod.ts)  - ⭐⭐ - check valid equation using left-right operators combination (1. ["+", "\*"] 2. ["+", "*", "||"])
+- [8/12](days/8/mod.ts)  - ⭐⭐ - count total of valid distinct antinodes from grid that contains different frequencies antennas
 
 ## Commands
 
