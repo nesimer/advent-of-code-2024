@@ -11,6 +11,7 @@ All my implementations of [Avent of Code days 2024](https://adventofcode.com/202
 - [7/12](days/7/mod.ts)  - ⭐⭐ - check valid equation using left-right operators combination (1. ["+", "\*"] 2. ["+", "*", "||"])
 - [8/12](days/8/mod.ts)  - ⭐⭐ - count total of valid distinct antinodes from grid that contains different frequencies antennas
 - [9/12](days/9/mod.ts)  - ⭐⭐ - arrange a disk map to remove gaps between file blocks, and computes the checksum of the arranged disk map
+- [10/12](days/10/mod.ts)  - ⭐ - Count total of hiking trails from trailheads
 
 ## Commands
 
