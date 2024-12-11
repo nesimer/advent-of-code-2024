@@ -12,6 +12,7 @@ All my implementations of [Avent of Code days 2024](https://adventofcode.com/202
 - [8/12](days/8/mod.ts)  - ⭐⭐ - count total of valid distinct antinodes from grid that contains different frequencies antennas
 - [9/12](days/9/mod.ts)  - ⭐⭐ - arrange a disk map to remove gaps between file blocks, and computes the checksum of the arranged disk map
 - [10/12](days/10/mod.ts)  - ⭐⭐ - Count total of hiking trails (non-distincts and distincts) from trailheads
+- [11/12](days/11/mod.ts)  - ⭐⭐ - Count generated stones after 25 blinks and after 75 blinks
 
 ## Commands
 
