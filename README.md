@@ -1,6 +1,6 @@
 # advent-of-code-2024
 
-All my implementations of [Avent of Code days 2024](https://adventofcode.com/2024):
+All my implementations of [Advent of Code days 2024](https://adventofcode.com/2024):
 
 - [1/12](days/1/mod.ts) - ⭐⭐ - compute distance and similarity between two number lists
 - [2/12](days/2/mod.ts) - ⭐⭐ - count safe or dampened safe report in a list of them (a report is a number list)
@@ -13,6 +13,7 @@ All my implementations of [Avent of Code days 2024](https://adventofcode.com/202
 - [9/12](days/9/mod.ts)  - ⭐⭐ - arrange a disk map to remove gaps between file blocks, and computes the checksum of the arranged disk map
 - [10/12](days/10/mod.ts)  - ⭐⭐ - Count total of hiking trails (non-distincts and distincts) from trailheads
 - [11/12](days/11/mod.ts)  - ⭐⭐ - Count generated stones after 25 blinks and after 75 blinks
+- [12/12](days/12/mod.ts)  - ⭐⭐ - Compute prices of fencing regions (sum of area \* perimeter / sum of area \* sides)
 
 ## Commands
 
