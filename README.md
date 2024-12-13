@@ -11,9 +11,10 @@ All my implementations of [Advent of Code days 2024](https://adventofcode.com/20
 - [7/12](days/7/mod.ts)  - ⭐⭐ - check valid equation using left-right operators combination (1. ["+", "\*"] 2. ["+", "*", "||"])
 - [8/12](days/8/mod.ts)  - ⭐⭐ - count total of valid distinct antinodes from grid that contains different frequencies antennas
 - [9/12](days/9/mod.ts)  - ⭐⭐ - arrange a disk map to remove gaps between file blocks, and computes the checksum of the arranged disk map
-- [10/12](days/10/mod.ts)  - ⭐⭐ - Count total of hiking trails (non-distincts and distincts) from trailheads
-- [11/12](days/11/mod.ts)  - ⭐⭐ - Count generated stones after 25 blinks and after 75 blinks
-- [12/12](days/12/mod.ts)  - ⭐⭐ - Compute prices of fencing regions (sum of area \* perimeter / sum of area \* sides)
+- [10/12](days/10/mod.ts)  - ⭐⭐ - count total of hiking trails (non-distincts and distincts) from trailheads
+- [11/12](days/11/mod.ts)  - ⭐⭐ - count generated stones after 25 blinks and after 75 blinks
+- [12/12](days/12/mod.ts)  - ⭐⭐ - compute prices of fencing regions (sum of area \* perimeter / sum of area \* sides)
+- [13/12](days/13/mod.ts)  - ⭐⭐ - calculate minimal possible cost on each claw machines from input  
 
 ## Commands
 
