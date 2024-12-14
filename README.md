@@ -15,7 +15,7 @@ All my implementations of [Advent of Code days 2024](https://adventofcode.com/20
 - [11/12](days/11/mod.ts)  - ⭐⭐ - count generated stones after 25 blinks and after 75 blinks
 - [12/12](days/12/mod.ts)  - ⭐⭐ - compute prices of fencing regions (sum of area \* perimeter / sum of area \* sides)
 - [13/12](days/13/mod.ts)  - ⭐⭐ - calculate minimal possible cost on each claw machines from input  
-- [14/12](days/14/mod.ts)  - ⭐ - compute the safety factor in a map with patrol robots  
+- [14/12](days/14/mod.ts)  - ⭐⭐ - compute the safety factor in a map with patrol robots and check minimal durations to have a christmas tree schema
 
 ## Commands
 
