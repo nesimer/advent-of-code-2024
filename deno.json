@@ -9,9 +9,9 @@
     "fmt": {
         "options": {
             "useTabs": false,
-            "lineWidth": 80,
+            "lineWidth": 120,
             "indentWidth": 2,
-            "singleQuote": true,
+            "singleQuote": false,
             "proseWrap": "preserve"
         }
     }
