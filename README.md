@@ -17,8 +17,9 @@ All my implementations of [Advent of Code days 2024](https://adventofcode.com/20
 - [13/12](days/13/mod.ts)  - ⭐⭐ - calculate minimal possible cost on each claw machines from input  
 - [14/12](days/14/mod.ts)  - ⭐⭐ - compute the safety factor in a map with patrol robots and check minimal durations to have a christmas tree schema
 - [15/12](days/15/mod.ts)  - ⭐ - solve gps coords of robot that moves boxes in specific space
-- [16/12](days/16/mod.ts)  - ⭐ - solve reindeer maze with minimal score and retrieves number of seats to see the race
-- [17/12](days/17/mod.ts)  - ⭐ - execute program extract from input and find lowest minimal value for A input of program to check a specific rule
+- [16/12](days/16/mod.ts)  - ⭐⭐ - solve reindeer maze with minimal score and retrieves number of seats to see the race
+- [17/12](days/17/mod.ts)  - ⭐⭐ - execute program extract from input and find lowest minimal value for A input of program to check a specific rule
+- [18/12](days/18/mod.ts)  - ⭐⭐ - compute custom maze depending on wanted lines of input, find best shortest path and find first byte that makes maze impossible
 
 ## Commands
 
