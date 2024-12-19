@@ -20,6 +20,7 @@ All my implementations of [Advent of Code days 2024](https://adventofcode.com/20
 - [16/12](days/16/mod.ts)  - ⭐⭐ - solve reindeer maze with minimal score and retrieves number of seats to see the race
 - [17/12](days/17/mod.ts)  - ⭐⭐ - execute program extract from input and find lowest minimal value for A input of program to check a specific rule
 - [18/12](days/18/mod.ts)  - ⭐⭐ - compute custom maze depending on wanted lines of input, find best shortest path and find first byte that makes maze impossible
+- [19/12](days/19/mod.ts)  - ⭐⭐ - count the total number of ways to construct each design and the total number of possible designs using given towel patterns
 
 ## Commands
 
