@@ -2,13 +2,6 @@ import { loadFile } from "../tools.ts";
 
 type Point = { x: number; y: number };
 
-const directions = [
-  [0, 1],
-  [1, 0],
-  [0, -1],
-  [-1, 0],
-];
-
 /**
  * Parses the input data to extract the map, start, and end points.
  *
@@ -16,17 +9,17 @@ const directions = [
  * @returns An object containing the map as a 2D array of strings, the start point, and the end point.
  */
 function parse(data: string): {
-  map: string[][];
+  maze: string[][];
   start: Point;
   end: Point;
 } {
   let end: Point = { x: -1, y: -1 };
   let start: Point = { x: -1, y: -1 };
-  const map = data
+  const maze = data
     .trim()
     .split("\n")
     .map((line) => line.split(""));
-  map.forEach((line, y) => {
+  maze.forEach((line, y) => {
     line.forEach((cell, x) => {
       if (cell === "S") {
         start = { x, y };
@@ -37,156 +30,107 @@ function parse(data: string): {
     });
   });
 
-  return { map, start, end };
+  return { maze, start, end };
 }
 
 /**
- * Performs a breadth-first search (BFS) to find the shortest path from the start point to the end point.
+ * Performs a breadth-first search (BFS) to calculate the shortest distance from the start point to all other points in the maze.
  *
- * @param map - The map as a 2D array of strings.
- * @param start - The starting point.
- * @param end - The ending point.
- * @returns The number of iteration in the shortest path, or Infinity if no path is found.
+ * @param maze - The maze represented as a 2D array of strings.
+ * @param start - The starting point in the maze.
+ * @returns A 2D array of numbers representing the shortest distance from the start point to each point in the maze.
+ *          Cells with walls ('#') are marked with -1, and unreachable cells are marked with Infinity.
  */
-function bfs(map: string[][], start: Point, end: Point): number {
-  const queue: [Point, number][] = [[start, 0]];
-  const visited = new Set<string>();
+function bfs(maze: string[][], start: Point): number[][] {
+  const distanceGrid = maze.map((row) =>
+    row.map((cell) => (cell === "#" ? -1 : Infinity))
+  );
 
-  const height = map.length;
-  const width = map[0].length;
-
-  const isWithinBounds = ({ x, y }: Point) =>
-    x >= 0 && y >= 0 && y < height && x < width && map[y][x] !== "#";
-
-  const distance = Math.abs(end.x - start.x) + Math.abs(end.y - start.y);
-
-  if (distance > 200) return Infinity;
+  const queue = [start];
+  distanceGrid[start.y][start.x] = 0;
 
   while (queue.length) {
-    const [currentPosition, iteration] = queue.shift()!;
+    const { x, y } = queue.shift()!;
 
-    if (currentPosition.x === end.x && currentPosition.y === end.y) {
-      return iteration;
-    }
+    const neighbours: Point[] = [
+      { x: x + 1, y },
+      { x: x - 1, y },
+      { x, y: y + 1 },
+      { x, y: y - 1 },
+    ];
 
-    const key = `${currentPosition.x},${currentPosition.y}`;
+    const currentValue = distanceGrid[y][x];
 
-    if (visited.has(key)) {
-      continue;
-    }
-    visited.add(key);
-
-    for (const [dx, dy] of directions) {
-      const newPoint = { x: currentPosition.x + dx, y: currentPosition.y + dy };
-      const newKey = `${newPoint.x},${newPoint.y}`;
-      if (isWithinBounds(newPoint) && !visited.has(newKey)) {
-        queue.push([newPoint, iteration + 1]);
+    for (const neighbor of neighbours) {
+      const neighborValue = distanceGrid[neighbor.y]?.[neighbor.x];
+      if (neighborValue === -1 || neighborValue < currentValue + 1) {
+        continue;
       }
+
+      distanceGrid[neighbor.y][neighbor.x] = currentValue + 1;
+      queue.push(neighbor);
     }
   }
 
-  return Infinity;
+  return distanceGrid;
 }
 
 /**
- * Gets the path score (shortest path length) between two points on the map.
+ * Counts the number of cheats that save at least a minimum amount of time.
  *
- * @param from - The starting point.
- * @param to - The ending point.
- * @param map - The map as a 2D array of strings.
- * @param checkedPaths - A map to cache previously computed path scores.
- * @returns The path score between the two points.
+ * @param distanceGrid - A 2D array of numbers representing the shortest distance from the start point to each point in the maze.
+ * @param maxCheats - The maximum number of cheats allowed.
+ * @param minimumTimeSaved - The minimum amount of time that must be saved for a cheat to be counted.
+ * @returns The total number of cheats that save at least the minimum amount of time.
  */
-function getPathScore(
-  from: Point,
-  to: Point,
-  map: string[][],
-  checkedPaths: Map<string, number>
-): number {
-  const key = `${from.x},${from.y}->${to.x},${to.y}`;
-  if (!checkedPaths.has(key)) {
-    checkedPaths.set(key, bfs(map, from, to));
-  }
-  return checkedPaths.get(key)!;
-}
-
-function countCheats(
-  data: string,
+function countFilteredCheats(
+  distanceGrid: number[][],
   maxCheats: number,
   minimumTimeSaved: number
 ): number {
-  let totalSavings = 0;
+  let sum = 0;
 
-  const { map, start, end } = parse(data);
-  const height = map.length;
-  const width = map[0].length;
+  for (let y1 = 1; y1 < distanceGrid.length - 1; ++y1) {
+    for (let x1 = 1; x1 < distanceGrid[y1].length - 1; ++x1) {
+      if (distanceGrid[y1][x1] === -1) {
+        continue;
+      }
 
-  const withoutCheat = bfs(map, start, end);
+      for (let y2 = 1; y2 < distanceGrid.length - 1; ++y2) {
+        for (let x2 = 1; x2 < distanceGrid[y2].length - 1; ++x2) {
+          const distance = Math.abs(y2 - y1) + Math.abs(x2 - x1);
 
-  const checkedPaths = new Map<string, number>();
-
-  for (let y1 = 0; y1 < height; y1++) {
-    for (let x1 = 0; x1 < width; x1++) {
-      if (map[y1][x1] === "#") continue;
-
-      const toCheatStart = getPathScore(
-        start,
-        { x: x1, y: y1 },
-        map,
-        checkedPaths
-      );
-
-      if (toCheatStart === Infinity) continue;
-
-      for (
-        let y2 = Math.max(0, y1 - maxCheats);
-        y2 <= Math.min(height - 1, y1 + maxCheats);
-        y2++
-      ) {
-        for (
-          let x2 = Math.max(0, x1 - maxCheats);
-          x2 <= Math.min(width - 1, x1 + maxCheats);
-          x2++
-        ) {
-          if (map[y2][x2] === "#") continue;
-
-          const cheatLength = Math.abs(x2 - x1) + Math.abs(y2 - y1);
-          if (cheatLength > maxCheats) continue;
-          const fromCheatEnd = getPathScore(
-            { x: x2, y: y2 },
-            end,
-            map,
-            checkedPaths
-          );
-
-          if (fromCheatEnd === Infinity) continue;
-
-          const timeSaved =
-            withoutCheat - (toCheatStart + cheatLength + fromCheatEnd);
-          if (timeSaved >= minimumTimeSaved) {
-            totalSavings++;
+          if (
+            distance <= maxCheats &&
+            distanceGrid[y2][x2] - distanceGrid[y1][x1] - distance >=
+              minimumTimeSaved
+          ) {
+            ++sum;
           }
         }
       }
     }
   }
 
-  return totalSavings;
+  return sum;
 }
 
 export default async function main() {
   const data = await loadFile(20);
 
+  const { maze: maze, start: start } = parse(data);
+  const distances = bfs(maze, start);
+
   console.log(
-    `Number of cheats that save 100 picoseconds (max 2 cheats): ${countCheats(
-      data,
+    `Number of cheats that save 100 picoseconds (max 2 cheats): ${countFilteredCheats(
+      distances,
       2,
       100
     )}`
   );
   console.log(
-    `Number of cheats that save 100 picoseconds (max 20 cheats): ${countCheats(
-      data,
+    `Number of cheats that save 100 picoseconds (max 20 cheats): ${countFilteredCheats(
+      distances,
       20,
       100
     )}`
