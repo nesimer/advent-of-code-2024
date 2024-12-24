@@ -22,6 +22,9 @@ All my implementations of [Advent of Code days 2024](https://adventofcode.com/20
 - [18/12](days/18/mod.ts)  - ⭐⭐ - compute custom maze depending on wanted lines of input, find best shortest path and find first byte that makes maze impossible
 - [19/12](days/19/mod.ts)  - ⭐⭐ - count the total number of ways to construct each design and the total number of possible designs using given towel patterns
 - [20/12](days/20/mod.ts)  - ⭐⭐ - compute total of cheats that save at least 100 picoseconds in maze resolving (first case, max cheats = 2; second case max cheats = 20)
+- [21/12](days/21/mod.ts)  - ⭐⭐ - compute complexities from input
+- [22/12](days/22/mod.ts)  - ⭐⭐ - generate secret and compute prices changes
+- [23/12](days/23/mod.ts)  - ⭐⭐ - analyze LAN connections and compute various network properties
 
 ## Commands
 

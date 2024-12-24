@@ -172,9 +172,6 @@ function computeMaxBananas(data: string): number {
   return maxBananas;
 }
 
-/**
- * Main function to execute the program.
- */
 export default async function main() {
   const data = await loadFile(22);
 
