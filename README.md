@@ -26,6 +26,7 @@ All my implementations of [Advent of Code days 2024](https://adventofcode.com/20
 - [22/12](days/22/mod.ts)  - ⭐⭐ - generate secret and compute prices changes
 - [23/12](days/23/mod.ts)  - ⭐⭐ - analyze LAN connections and compute various network properties
 - [24/12](days/24/mod.ts)  - ⭐⭐ - simulate logic gates, identify swapped wires, and debug a binary adder system to solve a complex logic puzzle
+- [25/12](days/25/mod.ts)  - ⭐⭐ - count unique lock/key pairs that fit together
 
 ## Commands
 
